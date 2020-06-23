@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import { GlobalContext } from "../context/GlobalState"
+// import { GlobalContext } from "../context/GlobalState"
 
 const Searchbar = ({ runSearch }) => {
   const [searchWord, setSearchWord] = useState("");
   const [filters, setFilter] = useState([]);
-  const { newSearch } = useContext(GlobalContext);
+  // const { newSearch } = useContext(GlobalContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();

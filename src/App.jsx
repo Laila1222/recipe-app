@@ -7,10 +7,10 @@ import {
 } from "react-router-dom";
 import Searchbar from "./components/Searchbar";
 import Recipe from "./components/Recipe";
-import Home from './pages/Home';
+import Home from "./pages/Home";
 import "./App.css";
-import { GlobalProvider, GlobalContext } from "./context/GlobalState";
-import FullRecipe from './pages/FullRecipe';
+import { GlobalProvider } from "./context/GlobalState";
+import FullRecipe from "./pages/FullRecipe";
 
 const App = () => {
   const APP_ID = "507c74ab";
@@ -88,19 +88,21 @@ const App = () => {
       time: 190,
     },
   ];
-  console.log(fakeData);
+  // console.log(fakeData);
 
-  const [url, setUrl] = useState(
-    `https://api.edamam.com/search?app_id=507c74ab&app_key=e4d64fd5836fb27e09a75f1c81908682&q=bread&health=vegetarian&excluded=flour`
-  );
-  const [recipes, setRecipes] = useState([]);
-  const [chosenRecipe, setChosenRecipe] = useState();
+  // const [url, setUrl] = useState(
+  //   `https://api.edamam.com/search?app_id=507c74ab&app_key=e4d64fd5836fb27e09a75f1c81908682&q=bread&health=vegetarian&excluded=flour`
+  // );
+  // const [recipes, setRecipes] = useState([]);
+  // const [chosenRecipe, setChosenRecipe] = useState();
 
-  const getChosenRecipe = (fromChild) => {
-    console.log(fromChild);
+  
+
+
+
+  const getChosenRecipe = (clickedRecipe) => {
+    console.log(clickedRecipe);
   }
-
-
 
   // const runSearch = (url) => {
   //   setUrl(url);
@@ -118,19 +120,20 @@ const App = () => {
   //   console.log(data.hits);
   //   setRecipes(data.hits);
   // };
-
   return (
     <GlobalProvider>
-      <Router>
-        <Switch>
-          <Route exact path="/"><Home getChosenRecipe={getChosenRecipe} /></Route>
-          <Route path="/recipe">
-            <FullRecipe />
-          </Route>
-
+    <Router>
+      <Switch>
+        <Route exact path="/">
           
-        </Switch>
-      </Router>
+            <Home />
+          
+        </Route>
+        <Route path="/recipe">
+          <FullRecipe  />
+        </Route>
+      </Switch>
+    </Router>
     </GlobalProvider>
   );
 };

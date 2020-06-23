@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,9 +6,19 @@ import {
   Route,
   useParams,
 } from "react-router-dom";
+import { GlobalContext } from "../context/GlobalState";
 import "./Recipe.css";
 
-const Recipe = ({ recipe, getChosenRecipe }) => {
+const Recipe = ({ recipe, initialState }) => {
+  // Import state and dispatch from GlobalContext
+  const { selectRecipe } = useContext(GlobalContext);
+
+  // If image or title is clicked
+  const recipeClicked = (recipe) => {
+    // Use the function from the context, that will change the recipe in the global context.
+    selectRecipe(recipe);
+  };
+
   const createUrlName = (recipeLabel) => {
     // Make all words capitalized in label
     const capitalized =
@@ -18,16 +28,27 @@ const Recipe = ({ recipe, getChosenRecipe }) => {
     return splittedString;
   };
 
-  
-
-  console.log(recipe);
   return (
     <div className="recipe">
       <Link to={`/recipe/${createUrlName(recipe.label)}`}>
-        <img src={recipe.image} alt="meal" className="recipe-image" onClick={() => {getChosenRecipe('csirke')}} />
+        <img
+          src={recipe.image}
+          alt="meal"
+          className="recipe-image"
+          onClick={() => {
+            recipeClicked(recipe);
+          }}
+        />
       </Link>
       <Link to={`/recipe/${createUrlName(recipe.label)}`}>
-        <h3 className="recipe-label">{recipe.label}</h3>
+        <h3
+          className="recipe-label"
+          onClick={() => {
+            recipeClicked(recipe);
+          }}
+        >
+          {recipe.label}
+        </h3>
       </Link>
 
       <div className="time-cal-container">
