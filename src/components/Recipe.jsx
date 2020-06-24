@@ -13,9 +13,15 @@ const Recipe = ({ recipe, initialState }) => {
   // Import state and dispatch from GlobalContext
   const { selectRecipe } = useContext(GlobalContext);
 
+  const saveToLocalStorage = (recipe) => {
+    localStorage.setItem('selectedRecipe', JSON.stringify(recipe));
+    console.log('saved to local storage', localStorage.getItem('selectedRecipe'));
+  }
+
   // If image or title is clicked
   const recipeClicked = (recipe) => {
     // Use the function from the context, that will change the recipe in the global context.
+    saveToLocalStorage(recipe);
     selectRecipe(recipe);
   };
 
@@ -28,6 +34,7 @@ const Recipe = ({ recipe, initialState }) => {
     return splittedString;
   };
 
+  console.log(localStorage.getItem('selectedRecipe'));
   return (
     <div className="recipe">
       <Link to={`/recipe/${createUrlName(recipe.label)}`}>

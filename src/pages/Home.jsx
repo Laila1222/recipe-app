@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useContext, useStateValue } from "react";
-import Searchbar from "../components/Searchbar";
+import React, {  useState } from "react";
+// import Searchbar from "../components/Searchbar";
 import Recipe from "../components/Recipe";
-import { GlobalProvider, GlobalContext } from "../context/GlobalState";
+// import { GlobalProvider, GlobalContext } from "../context/GlobalState";
 const fakeData = [
   {
     label: "Rustic Italian Bread",

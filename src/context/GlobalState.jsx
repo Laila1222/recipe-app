@@ -1,5 +1,5 @@
-import React, { createContext, useReducer, useContext } from "react";
-import AppReducer from "./AppReducer";
+import React, { useReducer } from "react";
+// import AppReducer from "./AppReducer";
 
 // Set what happens if changing/selecting recipe
 const reducer = (state, action) => {
@@ -14,9 +14,9 @@ const reducer = (state, action) => {
         return state;
     }
   };
-  
+
 //   Initially, there's no recipe selected
-  const initialState = { recipe: 'no recipe selecte' };
+  const initialState = { };
 
   const GlobalContext = React.createContext(initialState);
 

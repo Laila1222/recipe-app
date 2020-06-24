@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   useParams,
 } from "react-router-dom";
-import Searchbar from "./components/Searchbar";
-import Recipe from "./components/Recipe";
+// import Searchbar from "./components/Searchbar";
+// import Recipe from "./components/Recipe";
 import Home from "./pages/Home";
 import "./App.css";
 import { GlobalProvider } from "./context/GlobalState";
