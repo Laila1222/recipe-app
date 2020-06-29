@@ -34,7 +34,7 @@ const Recipe = ({ recipe, initialState }) => {
     return splittedString;
   };
 
-  console.log(localStorage.getItem('selectedRecipe'));
+  
   return (
     <div className="recipe">
       <Link to={`/recipe/${createUrlName(recipe.label)}`}>

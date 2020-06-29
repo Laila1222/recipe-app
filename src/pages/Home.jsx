@@ -1,5 +1,5 @@
 import React, {  useState } from "react";
-// import Searchbar from "../components/Searchbar";
+import Searchbar from "../components/Searchbar";
 import Recipe from "../components/Recipe";
 // import { GlobalProvider, GlobalContext } from "../context/GlobalState";
 const fakeData = [
@@ -84,9 +84,8 @@ const Home = () => {
   const [recipes, setRecipes] = useState([]);
   return (
     <div className="app">
-      <h1>Low Fodmap recipes</h1>
       {/* <Searchbar runSearch={runSearch} /> */}
-      {/* <Searchbar /> */}
+      <Searchbar />
       <div className="recipes-container">
         {fakeData.map((recipe) => (
           <Recipe key={recipe.label} recipe={recipe} />

@@ -37,7 +37,6 @@ const FullRecipe = (props) => {
     //   reload page, otherwise it wants to keep rendering fullrecipes page
       window.location.reload();
     } else {
-       
       return data;
     }
   };

@@ -13,6 +13,29 @@
 .full-recipe-image-container {
     width: 100%;
     height: 18rem;
-    background-color: pink;
+}
+
+.full-recipe-image {
+    height: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+.full-recipe-content {
+    display: flex;
+}
+
+.full-recipe-sidebar {
+    box-sizing: border-box;
+    width: 30%;
+    background-color: yellow;
+    padding: 2rem;
+
+}
+
+.full-recipe-ingredient-title {
+    font-size: 1.8rem;
+    font-family: 'Slabo 27px', serif;
+
 }
 
