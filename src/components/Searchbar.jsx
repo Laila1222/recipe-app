@@ -18,11 +18,12 @@ const Searchbar = ({ runSearch }) => {
     }
 
     console.log(filtersArray);
+    console.log(searchWord);
 
-
+    console.log('url', createUrl(searchWord, filtersArray));
     // newSearch(createUrl(searchWord, filters));
     runSearch(createUrl(searchWord, filtersArray));
-    createUrl(searchWord, filtersArray)
+    // createUrl(searchWord, filtersArray)
   };
 
   const handleSelectChange = (e) => {
@@ -37,11 +38,14 @@ const Searchbar = ({ runSearch }) => {
   }
 
   const createUrl = (searchWord, filters) => {
-    let url = `https://api.edamam.com/search?app_id=507c74ab&app_key=e4d64fd5836fb27e09a75f1c81908682&q=bread&health=vegetarian&excluded=flour`;
+    console.log(searchWord);
     console.log(filters);
+    let url = `https://api.edamam.com/search?app_id=507c74ab&app_key=e4d64fd5836fb27e09a75f1c81908682&q=bread&health=vegetarian&excluded=flour`;
+    
 
-    if (searchWord && !filters) {
+    if (filters.length === 0) {
       url = `https://api.edamam.com/search?app_id=507c74ab&app_key=e4d64fd5836fb27e09a75f1c81908682&q=${searchWord}`;
+      // console.log(url);
       return url;
     } else if (searchWord && filters) {
       // If there are multiple filters
@@ -51,7 +55,7 @@ const Searchbar = ({ runSearch }) => {
           .map((filter) => `&health=${filter}`)
           .join("");
         url = `https://api.edamam.com/search?app_id=507c74ab&app_key=e4d64fd5836fb27e09a75f1c81908682&q=${searchWord}${multipleFilters}`;
-        console.log(url);
+        // console.log(url);
         return url;
       }
       //   Only one filter
@@ -60,8 +64,6 @@ const Searchbar = ({ runSearch }) => {
         url = `https://api.edamam.com/search?app_id=507c74ab&app_key=e4d64fd5836fb27e09a75f1c81908682&q=${searchWord}${oneFilter}`;
         return url;
       }
-    } else {
-      console.log("missing searchword");
     }
   };
 

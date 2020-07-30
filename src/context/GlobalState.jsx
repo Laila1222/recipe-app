@@ -24,7 +24,7 @@ const reducer = (state, action) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const selectRecipe = (recipe) => {
-        console.log('from state', recipe);
+        // console.log('from state', recipe);
         dispatch({
             type: 'changeRecipe',
             recipe: recipe

@@ -37,7 +37,7 @@
 
 .full-recipe-sidebar {
     box-sizing: border-box;
-    width: 30%;
+    width: 40%;
     padding: 2rem;
     text-align: center;
 
@@ -58,7 +58,7 @@
 }
 
 .full-recipe-method-container {
-    width: 70%;
+    width: 60%;
     text-align: center;
     padding: 2rem;
 }
@@ -72,5 +72,6 @@
 .full-recipe-ingredients-list {
     text-align: left;
     list-style: circle;
+    margin: 1rem;   
 }
 

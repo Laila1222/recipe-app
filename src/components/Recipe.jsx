@@ -15,7 +15,7 @@ const Recipe = ({ recipe, initialState }) => {
 
   const saveToLocalStorage = (recipe) => {
     localStorage.setItem('selectedRecipe', JSON.stringify(recipe));
-    console.log('saved to local storage', localStorage.getItem('selectedRecipe'));
+    // console.log('saved to local storage', localStorage.getItem('selectedRecipe'));
   }
 
   // If image or title is clicked
@@ -34,27 +34,28 @@ const Recipe = ({ recipe, initialState }) => {
     return splittedString;
   };
 
-  
+
   return (
+    
     <div className="recipe">
-      <Link to={`/recipe/${createUrlName(recipe.label)}`}>
+      <Link to={`/recipe/${createUrlName(recipe.recipe.label)}`}>
         <img
-          src={recipe.image}
+          src={recipe.recipe.image}
           alt="meal"
           className="recipe-image"
           onClick={() => {
-            recipeClicked(recipe);
+            recipeClicked(recipe.recipe);
           }}
         />
       </Link>
-      <Link to={`/recipe/${createUrlName(recipe.label)}`}>
+      <Link to={`/recipe/${createUrlName(recipe.recipe.label)}`}>
         <div className="recipe-label-container"><h3
           className="recipe-label"
           onClick={() => {
-            recipeClicked(recipe);
+            recipeClicked(recipe.recipe);
           }}
         >
-          {recipe.label}
+          {recipe.recipe.label}
         </h3></div>
         
       </Link>

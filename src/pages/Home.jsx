@@ -1,7 +1,7 @@
 import React, {  useState } from "react";
 import Searchbar from "../components/Searchbar";
 import Recipe from "../components/Recipe";
-// import { GlobalProvider, GlobalContext } from "../context/GlobalState";
+import { GlobalProvider, GlobalContext } from "../context/GlobalState";
 const fakeData = [
   {
     label: "Rustic Italian Bread",
@@ -75,19 +75,22 @@ const fakeData = [
   },
 ];
 
+// const realData = 
 
-const Home = ({runSearch}) => {
 
+const Home = ({runSearch, recipes}) => {
+  console.log(recipes);
   const [url, setUrl] = useState(
     `https://api.edamam.com/search?app_id=507c74ab&app_key=e4d64fd5836fb27e09a75f1c81908682&q=bread&health=vegetarian&excluded=flour`
   );
-  const [recipes, setRecipes] = useState([]);
+  // const [recipes, setRecipes] = useState([]);
+  console.log(recipes)
   return (
     <div className="app">
       {/* <Searchbar runSearch={runSearch} /> */}
       <Searchbar runSearch={runSearch} />
       <div className="recipes-container">
-        {fakeData.map((recipe) => (
+        {recipes.map((recipe) => (
           <Recipe key={recipe.label} recipe={recipe} />
         ))}
       </div>

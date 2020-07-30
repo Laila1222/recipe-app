@@ -14,7 +14,6 @@ const FullRecipe = (props) => {
 
   //   Check if there's data in context or local storage
   const getData = () => {
-    console.log(localStorageData);
     console.log(state.recipe);
     // If there is data in context, use that
     if (state.recipe) {
@@ -49,6 +48,7 @@ const FullRecipe = (props) => {
     //   Clear local storage
     localStorage.removeItem('selectedRecipe');
   }
+  const {ingredients} = finalData;
 
   return (
     <div className="full-recipe-container">
@@ -67,9 +67,13 @@ const FullRecipe = (props) => {
             <p className="small-details">{finalData.calories} calories</p>
           </div>
           <div className="full-recipe-ingredients-container">
-            <ul>
+            {ingredients.map((ingredient) => (
+             <li className="full-recipe-ingredients-list">{ingredient.text}</li> 
+            ))
+          }
+            {/* <ul>
               <li className="full-recipe-ingredients-list">egg</li>
-            </ul>
+            </ul> */}
           </div>
         </div>
         <div className="full-recipe-method-container">
