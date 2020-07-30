@@ -120,6 +120,7 @@ const App = () => {
     console.log(data.hits);
     setRecipes(data.hits);
   };
+  
   return (
     <GlobalProvider>
     <Router>
