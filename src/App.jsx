@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -90,11 +90,11 @@ const App = () => {
   ];
   // console.log(fakeData);
 
-  // const [url, setUrl] = useState(
-  //   `https://api.edamam.com/search?app_id=507c74ab&app_key=e4d64fd5836fb27e09a75f1c81908682&q=bread&health=vegetarian&excluded=flour`
-  // );
-  // const [recipes, setRecipes] = useState([]);
-  // const [chosenRecipe, setChosenRecipe] = useState();
+  const [url, setUrl] = useState(
+    `https://api.edamam.com/search?app_id=507c74ab&app_key=e4d64fd5836fb27e09a75f1c81908682&q=bread&health=vegetarian&excluded=flour`
+  );
+  const [recipes, setRecipes] = useState([]);
+  const [chosenRecipe, setChosenRecipe] = useState();
 
   
 
@@ -104,29 +104,29 @@ const App = () => {
     console.log(clickedRecipe);
   }
 
-  // const runSearch = (url) => {
-  //   setUrl(url);
-  //   getRecipes(url);
-  // };
+  const runSearch = (url) => {
+    setUrl(url);
+    getRecipes(url);
+  };
 
-  // useEffect( () => {
-  //    getRecipes(url);
-  // }, []);
+  useEffect( () => {
+     getRecipes(url);
+  }, []);
 
-  // const getRecipes = async (url) => {
-  //   const response = await fetch(url
-  //   );
-  //   const data = await response.json();
-  //   console.log(data.hits);
-  //   setRecipes(data.hits);
-  // };
+  const getRecipes = async (url) => {
+    const response = await fetch(url
+    );
+    const data = await response.json();
+    console.log(data.hits);
+    setRecipes(data.hits);
+  };
   return (
     <GlobalProvider>
     <Router>
       <Switch>
         <Route exact path="/">
           
-            <Home />
+            <Home runSearch={runSearch} />
           
         </Route>
         <Route path="/recipe">

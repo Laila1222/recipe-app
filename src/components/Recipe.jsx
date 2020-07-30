@@ -48,20 +48,21 @@ const Recipe = ({ recipe, initialState }) => {
         />
       </Link>
       <Link to={`/recipe/${createUrlName(recipe.label)}`}>
-        <h3
+        <div className="recipe-label-container"><h3
           className="recipe-label"
           onClick={() => {
             recipeClicked(recipe);
           }}
         >
           {recipe.label}
-        </h3>
+        </h3></div>
+        
       </Link>
 
-      <div className="time-cal-container">
+      {/* <div className="time-cal-container">
         <p className="recipe-labels">Calories: {recipe.calories}</p>
         <p className="recipe-labels">Time: {recipe.time}</p>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -76,7 +76,7 @@ const fakeData = [
 ];
 
 
-const Home = () => {
+const Home = ({runSearch}) => {
 
   const [url, setUrl] = useState(
     `https://api.edamam.com/search?app_id=507c74ab&app_key=e4d64fd5836fb27e09a75f1c81908682&q=bread&health=vegetarian&excluded=flour`
@@ -85,7 +85,7 @@ const Home = () => {
   return (
     <div className="app">
       {/* <Searchbar runSearch={runSearch} /> */}
-      <Searchbar />
+      <Searchbar runSearch={runSearch} />
       <div className="recipes-container">
         {fakeData.map((recipe) => (
           <Recipe key={recipe.label} recipe={recipe} />

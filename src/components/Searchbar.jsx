@@ -4,23 +4,41 @@ import "./Searchbar.css";
 
 const Searchbar = ({ runSearch }) => {
   const [searchWord, setSearchWord] = useState("");
-  const [filters, setFilter] = useState([]);
+  const [filters, setFilter] = useState({});
   // const { newSearch } = useContext(GlobalContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let filtersArray = [];
+    // Create an array where we have the filters that are true
+    for (const [key, value] of Object.entries(filters)) {
+      if (value) {
+        filtersArray.push(key);
+      }
+    }
+
+    console.log(filtersArray);
+
+
     // newSearch(createUrl(searchWord, filters));
-    runSearch(createUrl(searchWord, filters));
+    runSearch(createUrl(searchWord, filtersArray));
+    createUrl(searchWord, filtersArray)
   };
 
   const handleSelectChange = (e) => {
     // Gets all selected values and puts them into an array
     let value = Array.from(e.target.selectedOptions, (option) => option.value);
-    setFilter(value);
+    console.log(setFilter(value));
   };
+
+  const handleCheckboxChange = (event) => {
+    setFilter({...filters, [event.target.name]: event.target.checked});
+    console.log("checked items: ", filters);
+  }
 
   const createUrl = (searchWord, filters) => {
     let url = `https://api.edamam.com/search?app_id=507c74ab&app_key=e4d64fd5836fb27e09a75f1c81908682&q=bread&health=vegetarian&excluded=flour`;
+    console.log(filters);
 
     if (searchWord && !filters) {
       url = `https://api.edamam.com/search?app_id=507c74ab&app_key=e4d64fd5836fb27e09a75f1c81908682&q=${searchWord}`;
@@ -33,6 +51,7 @@ const Searchbar = ({ runSearch }) => {
           .map((filter) => `&health=${filter}`)
           .join("");
         url = `https://api.edamam.com/search?app_id=507c74ab&app_key=e4d64fd5836fb27e09a75f1c81908682&q=${searchWord}${multipleFilters}`;
+        console.log(url);
         return url;
       }
       //   Only one filter
@@ -58,8 +77,12 @@ const Searchbar = ({ runSearch }) => {
             className="search-input"
             onInput={(e) => setSearchWord(e.target.value)}
             placeholder="Search for a recipe / ingredient..."
+            required
           />
         </div>
+        {/* <div className="filter-title-container">
+          <h2 className="filter-title">Add a filter...</h2>
+        </div> */}
 
         {/* <select name="filters" multiple onChange={(e) => handleSelectChange(e)}>
       <option value="vegan">Vegan</option>
@@ -72,37 +95,37 @@ const Searchbar = ({ runSearch }) => {
         <div className="filters-container">
           <div className="filter">
             <label>
-              <input type="checkbox" className="filter-checkbox" />
+              <input type="checkbox" className="filter-checkbox" name="vegan" onChange={handleCheckboxChange} />
               <span className="filter-span">Vegan</span>
             </label>
           </div>
           <div className="filter">
             <label>
-              <input type="checkbox" className="filter-checkbox" />
+              <input type="checkbox" className="filter-checkbox" name="vegetarian" onChange={handleCheckboxChange}/>
               <span className="filter-span">Vegetarian</span>
             </label>
           </div>
           <div className="filter">
             <label>
-              <input type="checkbox" className="filter-checkbox" />
+              <input type="checkbox" className="filter-checkbox" name="sugar-conscious" onChange={handleCheckboxChange}/>
               <span className="filter-span">Sugar conscious</span>
             </label>
           </div>
           <div className="filter">
             <label>
-              <input type="checkbox" className="filter-checkbox" />
+              <input type="checkbox" className="filter-checkbox" name="peanut-free" onChange={handleCheckboxChange}/>
               <span className="filter-span">Peanut free</span>
             </label>
           </div>
           <div className="filter">
             <label>
-              <input type="checkbox" className="filter-checkbox" />
+              <input type="checkbox" className="filter-checkbox" name="tree-nut-free" onChange={handleCheckboxChange}/>
               <span className="filter-span">Tree nut free</span>
             </label>
           </div>
           <div className="filter">
             <label>
-              <input type="checkbox" className="filter-checkbox" />
+              <input type="checkbox" className="filter-checkbox" name="alcohol-free" onChange={handleCheckboxChange} />
               <span className="filter-span">Alcohol free</span>
             </label>
           </div>
